@@ -4,6 +4,7 @@ import {ACTION_CUSTOM_INPUT_IS_FOCUSSED,ACTION_CUSTOM_INPUT_NOT_FOCUSSED,ACTION_
 import { customInputState } from './customInputState';
 import {reducer as customReducer} from './reducer'
 import {StateResolver} from '../../store/stateResolver'
+import {get} from 'dot-prop-immutable'
 
 
 @Component({
@@ -37,14 +38,8 @@ export class CustomInputComponent implements OnInit {
   }
   
   updateState(){
-    this.displayState = StateResolver(this.propPath,store.getState());
-
-    // let temp:string[] = this.propPath.split('.');
-    // for(let i=0;i<temp.length;i++){
-    //   this.displayState = this.displayState[temp[i]];
-    //   console.log(i);
-    //   console.log(this.displayState);
-    // }
+    //this.displayState = StateResolver(this.propPath,store.getState());
+    this.displayState = get(store.getState(),this.propPath);
     this.value = this.displayState.value;
   }
 

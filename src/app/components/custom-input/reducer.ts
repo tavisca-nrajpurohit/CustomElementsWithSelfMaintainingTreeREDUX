@@ -1,5 +1,6 @@
 import {customInputState} from './customInputState';
 import {CUSTOM_INPUT_IS_FOCUSSED,CUSTOM_INPUT_NOT_FOCUSSED,CUSTOM_INPUT_VALUE_CHANGED} from './actions'
+import {set} from 'dot-prop-immutable'
 
 const initialState: customInputState = {
         value: "",
@@ -10,21 +11,18 @@ const initialState: customInputState = {
 
 
 function customInputNotFocussed(state:customInputState,action):customInputState{
-    return Object.assign({},state,{
-        hasFocus: false
-    });
+    let newState =  set(state,'hasFocus',false);
+    return newState;
 }
 function customInputisFocussed(state:customInputState,action):customInputState{
-    return Object.assign({},state,{
-        isTouched:true,
-        hasFocus: true
-    });
+    let newState =  set(state,'isTouched',true);
+    newState =  set(newState,'hasFocus',true);
+    return newState;
 }
 
 function customInputValueChanged(state:customInputState,action):customInputState{
-    return Object.assign({},state,{
-        value:action.value
-    });
+    let newState =  set(state,'value',action.value);
+    return newState;
 }
 
 export const reducer = (propPath) => (state = initialState, action)=>{

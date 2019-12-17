@@ -9,10 +9,13 @@ import {reducer as formReducer} from './reducer'
 })
 export class CustomFormComponent implements OnInit {
   @Input() propPath:string;
+  formName:string="";
   constructor() { }
 
   ngOnInit() {
     store.attachReducers({ [this.propPath]:formReducer(this.propPath)});
+    let formNameArray = this.propPath.split('.');
+    this.formName = formNameArray[formNameArray.length-1]
   }
 
 }
