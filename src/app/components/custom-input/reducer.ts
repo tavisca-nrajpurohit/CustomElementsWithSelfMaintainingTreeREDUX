@@ -5,8 +5,7 @@ import {set} from 'dot-prop-immutable'
 const initialState: customInputState = {
         value: "",
         isTouched: false,
-        hasFocus: false,
-        placeholder:"placeholder"
+        hasFocus: false
 };
 
 
